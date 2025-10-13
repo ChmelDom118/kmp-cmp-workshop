@@ -1,0 +1,7 @@
+TEAM_ID=
+
+PRODUCT_NAME=cmp_workshop
+PRODUCT_BUNDLE_IDENTIFIER=com.chmelik.cmp_workshop.cmp_workshop$(TEAM_ID)
+
+CURRENT_PROJECT_VERSION=1
+MARKETING_VERSION=1.0

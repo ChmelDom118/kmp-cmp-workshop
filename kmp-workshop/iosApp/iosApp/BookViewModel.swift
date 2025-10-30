@@ -9,7 +9,7 @@ import Observation
 @Observable
 final class BookViewModel {
     @ObservationIgnored
-    private let bookService: BookService = BookService.instance
+    private let bookService: BookService = BookService()
 
     private(set) var books: [Book] = []
     private var likedIDs: Set<String> = []

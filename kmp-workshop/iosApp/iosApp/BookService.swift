@@ -5,8 +5,6 @@
 import Foundation
 
 final class BookService {
-    static let instance = BookService()
-
     func fetchBooks() -> [Book] {
         return [
             Book(id: "1", name: "The Hobbit", pageCount: 300, rating: 4.5),

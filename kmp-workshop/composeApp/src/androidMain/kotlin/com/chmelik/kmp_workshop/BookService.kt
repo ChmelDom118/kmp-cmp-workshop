@@ -4,19 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.core.content.edit
 
-class BookService private constructor(context: Context) {
-
-    companion object {
-        @Volatile
-        private var instance: BookService? = null
-
-        fun getInstance(context: Context): BookService {
-            return instance ?: synchronized(this) {
-                instance ?: BookService(context.applicationContext).also { instance = it }
-            }
-        }
-    }
-
+class BookService(context: Context) {
     private val preferences: SharedPreferences = context.getSharedPreferences("book_preferences", Context.MODE_PRIVATE)
 
     fun fetchBooks(): List<Book> = listOf(

@@ -4,18 +4,43 @@
 
 import SwiftUI
 import Observation
+import Shared
+
+struct BookItem: Identifiable {
+    private let book: Book
+
+    init(book: Book) {
+        self.book = book
+    }
+
+    var id: String {
+        return book.id
+    }
+
+    var name: String {
+        return book.name
+    }
+
+    var rating: Double {
+        return book.rating
+    }
+
+    var pageCount: Int {
+        return Int(book.pageCount)
+    }
+}
 
 @MainActor
 @Observable
 final class BookViewModel {
     @ObservationIgnored
-    private let bookService: BookService = BookService.instance
+    private let bookService: BookService = BookService(storage: Storage())
 
-    private(set) var books: [Book] = []
+    private(set) var books: [BookItem] = []
     private var likedIDs: Set<String> = []
 
     func fetchBooks() {
-        books = bookService.fetchBooks()
+        books = bookService.fetchBooks().map { BookItem(book: $0) }
         likedIDs = Set(books.filter { bookService.isBookLiked(id: $0.id) }.map { $0.id })
     }
 

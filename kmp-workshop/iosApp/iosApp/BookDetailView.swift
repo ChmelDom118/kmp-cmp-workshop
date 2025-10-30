@@ -6,7 +6,7 @@ import SwiftUI
 
 struct BookDetailView: View {
     @Binding var viewModel: BookViewModel
-    let book: Book
+    let book: BookItem
 
     var body: some View {
         VStack(spacing: 10) {

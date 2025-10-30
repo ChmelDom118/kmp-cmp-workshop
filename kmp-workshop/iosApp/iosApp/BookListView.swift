@@ -6,10 +6,10 @@ import SwiftUI
 
 struct BookListView: View {
     @State private var viewModel: BookViewModel = BookViewModel()
-    @State private var presentedBook: Book?
+    @State private var presentedBook: BookItem?
 
     var body: some View {
-        List(viewModel.books, id: \.id) { book in
+        List(viewModel.books) { book in
             Text(book.name)
                 .fontWeight(.heavy)
                 .onTapGesture {

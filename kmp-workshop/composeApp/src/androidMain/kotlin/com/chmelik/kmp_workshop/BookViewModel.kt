@@ -5,20 +5,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 
 class BookViewModel(context: Context) : ViewModel() {
     private val bookService = BookService(context)
-
-    class Factory(private val context: Context) : ViewModelProvider.Factory {
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(BookViewModel::class.java)) {
-                @Suppress("UNCHECKED_CAST")
-                return BookViewModel(context.applicationContext) as T
-            }
-            throw IllegalArgumentException("Unknown ViewModel class")
-        }
-    }
 
     var books by mutableStateOf(listOf<Book>())
         private set
@@ -41,10 +30,10 @@ class BookViewModel(context: Context) : ViewModel() {
     fun likeUnlikeBook(id: String) {
         if (likedIDs.contains(id)) {
             bookService.unlikeBook(id)
-            likedIDs = likedIDs - id
+            likedIDs -= id
         } else {
             bookService.likeBook(id)
-            likedIDs = likedIDs + id
+            likedIDs += id
         }
     }
 }

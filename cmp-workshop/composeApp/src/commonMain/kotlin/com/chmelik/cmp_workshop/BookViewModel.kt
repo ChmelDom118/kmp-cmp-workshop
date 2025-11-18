@@ -1,13 +1,12 @@
 package com.chmelik.cmp_workshop
 
-import android.content.Context
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 
-class BookViewModel(context: Context) : ViewModel() {
-    private val bookService = BookService(Storage(context))
+class BookViewModel(storage: Storage) : ViewModel() {
+    private val bookService = BookService(storage = storage)
 
     var books by mutableStateOf(listOf<Book>())
         private set

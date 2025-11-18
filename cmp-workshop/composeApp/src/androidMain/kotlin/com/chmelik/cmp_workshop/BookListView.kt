@@ -12,17 +12,13 @@ import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BookListView(
-    viewModel: BookViewModel = viewModel(
-        factory = BookViewModel.Factory(LocalContext.current.applicationContext)
-    )
+    viewModel: BookViewModel
 ) {
     var presentedBook by rememberSaveable { mutableStateOf<Book?>(null) }
     val sheetState: SheetState = rememberModalBottomSheetState()
@@ -43,13 +39,13 @@ fun BookListView(
         }
     }
 
-    if (presentedBook != null) {
+    presentedBook?.let {
         ModalBottomSheet(
             onDismissRequest = { presentedBook = null },
             sheetState = sheetState
         ) {
             BookDetailView(
-                book = presentedBook!!,
+                book = it,
                 viewModel = viewModel
             )
         }

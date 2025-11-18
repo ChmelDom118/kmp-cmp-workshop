@@ -15,9 +15,9 @@ fun BookDetailView(
     viewModel: BookViewModel
 ) {
     Column(Modifier.padding(16.dp)) {
-        Text(book.name, fontWeight = FontWeight.Bold)
-        Text("Pages: ${book.pageCount}")
-        Text("Rating: ${book.rating}")
+        Text(text = book.name, fontWeight = FontWeight.Bold)
+        Text(text = "Pages: ${book.pageCount}")
+        Text(text = "Rating: ${book.rating}")
         Button(
             onClick = {
                 viewModel.likeUnlikeBook(book.id)

@@ -18,7 +18,8 @@ import androidx.compose.ui.unit.dp
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BookListView(
-    viewModel: BookViewModel
+    viewModel: BookViewModel,
+    modifier: Modifier
 ) {
     var presentedBook by rememberSaveable { mutableStateOf<Book?>(null) }
     val sheetState: SheetState = rememberModalBottomSheetState()
@@ -27,7 +28,7 @@ fun BookListView(
         viewModel.fetchBooks()
     }
 
-    LazyColumn {
+    LazyColumn(modifier = modifier) {
         items(items = viewModel.books, key = { it.id }) { book ->
             Text(
                 text = book.name,

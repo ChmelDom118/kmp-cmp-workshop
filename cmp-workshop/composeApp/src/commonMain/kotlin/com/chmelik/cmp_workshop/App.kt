@@ -1,5 +1,6 @@
 package com.chmelik.cmp_workshop
 
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -15,7 +16,8 @@ fun App(
         val viewModel = remember { BookViewModel(storage = storage) }
         BookListView(
             viewModel = viewModel,
-            listItemView = listItemView
+            listItemView = listItemView,
+            modifier = Modifier.statusBarsPadding()
         )
     }
 }

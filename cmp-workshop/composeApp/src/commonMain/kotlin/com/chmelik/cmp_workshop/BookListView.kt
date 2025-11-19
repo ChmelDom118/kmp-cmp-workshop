@@ -17,7 +17,8 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun BookListView(
     viewModel: BookViewModel,
-    listItemView: @Composable (book: Book, onTap: () -> Unit, modifier: Modifier) -> Unit
+    listItemView: @Composable (book: Book, onTap: () -> Unit, modifier: Modifier) -> Unit,
+    modifier: Modifier
 ) {
     var presentedBook by rememberSaveable { mutableStateOf<Book?>(null) }
     val sheetState: SheetState = rememberModalBottomSheetState()
@@ -26,7 +27,7 @@ fun BookListView(
         viewModel.fetchBooks()
     }
 
-    LazyColumn {
+    LazyColumn(modifier = modifier) {
         items(items = viewModel.books, key = { it.id }) { book ->
             listItemView(
                 book,

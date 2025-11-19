@@ -8,11 +8,13 @@ import androidx.compose.material3.SheetState
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.Modifier
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BookListView(
-    viewModel: BookViewModel
+    viewModel: BookViewModel,
+    modifier: Modifier
 ) {
     var presentedBook by rememberSaveable { mutableStateOf<Book?>(null) }
     val sheetState: SheetState = rememberModalBottomSheetState()
@@ -21,7 +23,7 @@ fun BookListView(
         viewModel.fetchBooks()
     }
 
-    LazyColumn {
+    LazyColumn(modifier = modifier) {
         items(items = viewModel.books, key = { it.id }) { book ->
             BookListItemView(
                 book = book,

@@ -1,4 +1,4 @@
-package com.chmelik.kmp_workshop
+package com.chmelik.cmp_workshop
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.*
